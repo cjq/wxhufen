@@ -1,0 +1,63 @@
+﻿
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for follower
+-- ----------------------------
+DROP TABLE IF EXISTS `follower`;
+CREATE TABLE `follower` (
+  `mpid` varchar(100) NOT NULL,
+  `userid` smallint(5) unsigned NOT NULL,
+  `openid` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of follower
+-- ----------------------------
+INSERT INTO `follower` VALUES ('gh_98e668f0ebfb', '1000', 'ouUq6wQyO9C03VdSNMiUKug8_IQg');
+INSERT INTO `follower` VALUES ('gh_15f788566992', '1000', 'octAVs541EVFRPMRk7aLc0ZslzF0');
+INSERT INTO `follower` VALUES ('gh_98e668f0ebfb', '1003', 'ouUq6wRL2y8k-W5NgHJ_K0bTYY9M');
+INSERT INTO `follower` VALUES ('gh_15f788566992', '1003', 'octAVsx9bGDcP4V5htuxk1suDGj4');
+
+-- ----------------------------
+-- Table structure for mp
+-- ----------------------------
+DROP TABLE IF EXISTS `mp`;
+CREATE TABLE `mp` (
+  `mpid` varchar(100) NOT NULL,
+  `mpname` varchar(100) DEFAULT NULL,
+  `qrcode` varchar(100) DEFAULT NULL,
+  `taskpoint` varchar(100) DEFAULT NULL,
+  `totalcount` varchar(100) DEFAULT NULL,
+  `fnumber` int(11) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `userid` smallint(5) unsigned DEFAULT NULL,
+  PRIMARY KEY (`mpid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mp
+-- ----------------------------
+INSERT INTO `mp` VALUES ('gh_15f788566992', '屁股都红了', '1585c854-c25d-478f-8794-dcb4fc8c3ebf.jpg', '11', '18', null, '2016-03-26 22:19:17', '1000');
+INSERT INTO `mp` VALUES ('gh_98e668f0ebfb', '一周电影', 'ca0a32d0-9dd5-4248-b1ea-41d410420dfa.jpg', '10', '18', null, '2016-03-26 22:21:46', '1001');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `userid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `point` int(11) DEFAULT NULL,
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1004 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1000', '张三三', '123123', '164463450@qq.com', '101');
+INSERT INTO `user` VALUES ('1001', '李四四', 'shenshaokuai', '283138327@qq.com', '100');
+INSERT INTO `user` VALUES ('1002', '王五五', '123123', '164463451@qq.com', '150');
+INSERT INTO `user` VALUES ('1003', '晓晓白', '199610', '1274326018@qq.com', '171');
