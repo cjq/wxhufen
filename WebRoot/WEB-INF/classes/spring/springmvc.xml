@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	
+	<!-- 使用RESTful风格要设置静态资源路径否则访问不了 -->
+	<mvc:resources location="/assets/" mapping="/assets/**"/>
+	<mvc:resources location="/image/" mapping="/image/**"/>
+	
+	<!-- 视图解析器 -->
+	<!-- InternalResourceViewResolver：支持JSP视图解析 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+
+	<!-- 可以扫描controller、service、...
+	这里让扫描controller，指定controller的包
+	注解自动扫描否则要自己添加bean -->
+	<context:component-scan base-package="com.wxhufen.controller">
+	</context:component-scan>
+	
+	<!-- 使用注解开发 -->
+	<mvc:annotation-driven>	
+	</mvc:annotation-driven>
+	
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为5MB -->
+		<property name="maxUploadSize">
+			<value>5242880</value>
+		</property>
+	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.wxhufen.handlerinterceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

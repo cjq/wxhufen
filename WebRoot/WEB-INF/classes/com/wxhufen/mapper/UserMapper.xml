@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxhufen.mapper.UserMapper">
+	
+	<select id="selectUserByEmail" parameterType="java.lang.String" resultType="com.wxhufen.po.User">
+	  	SELECT * FROM user WHERE email='${value}'
+	</select>
+	
+	<update id="updatPoint">
+		UPDATE user SET POINT=POINT-#{1} WHERE userid = #{0}
+	</update>
+	
+	<update id="updatePointByUserId">
+		UPDATE user SET POINT=POINT+#{1} WHERE userid=#{0}
+	</update>
+	
+	<select id="selectUserByUserid" parameterType="java.lang.Integer" resultType="com.wxhufen.po.User">
+		SELECT * FROM user WHERE userid = #{value}
+	</select>
+	
+	<insert id="insertUser" parameterType="com.wxhufen.po.User">
+		INSERT INTO user(username,password,email,point) VALUES(#{username},#{password},#{email},#{point})
+	</insert>
+	
+	<select id="selectUserByUserName" parameterType="java.lang.String" resultType="com.wxhufen.po.User">
+		SELECT * FROM user WHERE username = #{value}
+	</select>
+</mapper>

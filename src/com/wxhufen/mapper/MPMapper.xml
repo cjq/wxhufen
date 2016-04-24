@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wxhufen.mapper.MPMapper">
+	<select id="selectMPByMPid" parameterType="String" resultType="com.wxhufen.po.MP">
+		SELECT * FROM mp WHERE mpid=#{value}
+	</select>
+	
+	<insert id="insertMPid" parameterType="String">
+		INSERT INTO mp(mpid) VALUES(#{value})
+	</insert>
+	
+	<update id="updateMP" parameterType="com.wxhufen.po.MP">
+		UPDATE mp SET mpname=#{mpname},qrcode=#{qrcode},taskpoint=#{taskpoint},totalcount=#{totalcount},time=#{time},userid=#{userid} WHERE mpid=#{mpid};
+	</update>
+	
+	<select id="selectAllMPItems" resultType="com.wxhufen.po.MP" parameterType="com.wxhufen.po.Page">
+		SELECT * FROM mp WHERE mp.totalcount>0 ORDER BY taskpoint DESC LIMIT #{head},#{itemCount}
+	</select>
+	
+	<select id="getMPCount" resultType="Integer">
+		SELECT COUNT(*) FROM mp
+	</select>
+	
+	<update id="updateMPTotalCountByMPId" parameterType="String">
+		UPDATE mp SET totalcount = totalcount - 1 WHERE mpid = #{value}
+	</update>
+	
+</mapper>

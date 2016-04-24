@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<package name="com.wxhufen.po"/>
+	</typeAliases>
+
+	<!-- 已经整合spring的整合包进行扫描， 所以这里不用配置mapper了 -->
+  <!-- <mappers>
+  
+  </mappers> -->
+  
+</configuration>
